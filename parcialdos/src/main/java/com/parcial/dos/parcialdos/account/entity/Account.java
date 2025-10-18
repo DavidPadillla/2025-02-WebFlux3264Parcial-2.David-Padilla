@@ -7,15 +7,24 @@ import java.math.BigDecimal;
 @Table(name = "accounts")
 public class Account {
 
-  
-    private Long id;    
-    private String accountNumber;    
-    private String ownerName;    
-    private BigDecimal balance = BigDecimal.ZERO;   
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
+    private Long id;
+
+    @Column(nullable = false, unique = true)
+    private String accountNumber;
+
+    @Column(nullable = false)
+    private String ownerName;
+
+    private BigDecimal balance = BigDecimal.ZERO;
+
     private Boolean active = true;
 
+    
     public Account() {}
 
+    
     public Account(String accountNumber, String ownerName, BigDecimal balance, Boolean active) {
         this.accountNumber = accountNumber;
         this.ownerName = ownerName;
@@ -23,4 +32,45 @@ public class Account {
         this.active = active == null ? true : active;
     }
 
+    
+    public Long getId() {
+        return id;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+}
